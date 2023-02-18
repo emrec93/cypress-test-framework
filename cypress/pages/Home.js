@@ -1,7 +1,7 @@
 class Home {
   selectors = {
     navbar: {
-      search: "#quick-search-expan",
+      search: "#quick-search-expand",
       searchInput: "#nav-quick-search",
     },
     body: {
