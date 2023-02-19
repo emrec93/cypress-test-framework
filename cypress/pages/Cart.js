@@ -1,5 +1,3 @@
-import Search from "./Search";
-
 class Cart {
   selectors = {
     navbar: {
