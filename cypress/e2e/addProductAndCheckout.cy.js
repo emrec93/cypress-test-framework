@@ -6,7 +6,6 @@ describe("Adding a product to the cart and completing the checkout process", () 
       products.forEach((product) => {
         // Home
         cy.visit("/");
-        //cy.rejectCookies();
         cy.assertThatUserIsOnHomepage();
         cy.clickSearch();
         cy.searchFor(product.productName);
@@ -30,6 +29,8 @@ describe("Adding a product to the cart and completing the checkout process", () 
           Cypress.env("CARD_NAME"),
           Cypress.env("CARD_CVV")
         );
+
+        // Order Confirmation
         cy.verifyOrder(Cypress.env("FIRST_NAME"));
       });
     });
