@@ -6,17 +6,31 @@ describe("Adding a product to the cart and completing the checkout process", () 
       products.forEach((product) => {
         // Home
         cy.visit("/");
-        cy.rejectCookies();
+        //cy.rejectCookies();
         cy.assertThatUserIsOnHomepage();
         cy.clickSearch();
-        cy.searchFor(product.name);
+        cy.searchFor(product.productName);
 
         // Search
         cy.addToCart(0);
 
-        // Checkout
-        cy.assertPrice(product.price);
+        // Cart
+        cy.assertPrice(product.productPrice);
         cy.checkout();
+
+        // Checkout
+        cy.fillCustomerEmail(Cypress.env("EMAIL"));
+        cy.fillCustomerName(Cypress.env("FIRST_NAME"), Cypress.env("LAST_NAME"));
+        cy.fillCustomerAddress(Cypress.env("ADDRESS"), Cypress.env("CITY"), Cypress.env("POST_CODE"));
+        cy.fillCustomerPhoneNo(Cypress.env("PHONE_NO"));
+        cy.clickShippingContinue();
+        cy.enterCardDetails(
+          Cypress.env("CARD_NUMBER"),
+          Cypress.env("CARD_EXP"),
+          Cypress.env("CARD_NAME"),
+          Cypress.env("CARD_CVV")
+        );
+        cy.verifyOrder(Cypress.env("FIRST_NAME"));
       });
     });
   });
