@@ -30,6 +30,14 @@ To run the tests, open a terminal window and enter
 npm run test
 ```
 
+To run the tests via Cypress's electron based browser, open a terminal window and enter
+
+```sh
+npm run open
+```
+
+This will run the Cypress UI, where you can select the test you want to run in headed mode to see the test execute.
+
 ## CI/CD
 
 steps included within the cypress.yml file within .github/workflows/, will install and run Cypress on a Chrome browser, and capture screenshots of test failures should one occur.
