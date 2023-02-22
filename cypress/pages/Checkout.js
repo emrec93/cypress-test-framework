@@ -111,7 +111,7 @@ class Checkout {
   verifyOrder(name) {
     cy.intercept("**/checkout/order-confirmation/**").as("req");
     cy.wait("@req", { timeout: 10000 });
-    cy.wait(2000);
+    cy.wait(3000);
     cy.get(this.selectors.confirmation.heading).should("have.text", `Thank you ${name}!`);
     cy.get(this.selectors.confirmation.orderConfirmation).should("contain.text", "Your order number is ");
   }
